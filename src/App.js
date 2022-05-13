@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import {useState} from 'react';
-import ShowList from './components/ShowList'
+//import ShowList from './components/ShowList';
+import FilterList from './components/FilterList';
 
 function App() {
 
@@ -45,15 +46,13 @@ function App() {
           <button onClick={addTask} disabled={!tasks} >+</button>
         </div>
         <div>
-          <ShowList 
+          <FilterList 
           taskList={taskList} 
           setTaskList={setTaskList} 
-          setStatus={setStatus}
           pending={pending}
           inProgress={inProgress}
           done={done}
-          currentStatus={status}
-          status={status} />
+           />
         </div>
     </div>
       </div>
