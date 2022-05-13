@@ -30,8 +30,8 @@ function App() {
           <p>Filter Tasks</p>
           <input type="checkbox" id="pending" name="pending" value={pending} onChange={(e) => setPending(!pending)} defaultChecked />
           <label for="pending">Pending</label>
-          <input type="checkbox" id="inProgress" name="inProcess" value={inProgress} onChange={(e) => setInProgress(!inProgress)} defaultChecked />
-          <label for="inProgress">In Process</label>
+          <input type="checkbox" id="inProgress" name="inProgress" value={inProgress} onChange={(e) => setInProgress(!inProgress)} defaultChecked />
+          <label for="inProgress">In Progress</label>
           <input type="checkbox" id="done" name="done" value={done} onChange={(e) => setDone(!done)} defaultChecked />
           <label for="done">Done</label>
           <p>Add New Task</p>
