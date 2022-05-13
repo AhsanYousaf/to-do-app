@@ -49,7 +49,7 @@ function ShowList({ taskList, setTaskList , setStatus, pending, inProgress, done
                         <div key={task.key} className='Task-List'>
                             <p>{task.currentTask}</p>
                             <p>{task.currentStatus}</p>
-                            <select onChange={(e) => setStatus(e.target.value)}>
+                            <select onChange={(e) => newStatus(task,e)}>
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Process</option>
                                 <option value="Done">Done</option>
@@ -66,7 +66,7 @@ function ShowList({ taskList, setTaskList , setStatus, pending, inProgress, done
                         <div key={task.key} className='Task-List'>
                             <p>{task.currentTask}</p>
                             <p>{task.currentStatus}</p>
-                            <select onChange={(e) => setStatus(e.target.value)}>
+                            <select onChange={(e) => newStatus(task,e)}>
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Process</option>
                                 <option value="Done">Done</option>
@@ -83,7 +83,7 @@ function ShowList({ taskList, setTaskList , setStatus, pending, inProgress, done
                         <div key={task.key} className='Task-List'>
                             <p>{task.currentTask}</p>
                             <p>{task.currentStatus}</p>
-                            <select onChange={(e) => setStatus(e.target.value)}>
+                            <select onChange={(e) => newStatus(task,e)}>
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Process</option>
                                 <option value="Done">Done</option>
@@ -100,7 +100,7 @@ function ShowList({ taskList, setTaskList , setStatus, pending, inProgress, done
                         <div key={task.key} className='Task-List'>
                             <p>{task.currentTask}</p>
                             <p>{task.currentStatus}</p>
-                            <select onChange={(e) => setStatus(e.target.value)}>
+                            <select onChange={(e) => newStatus(task,e)}>
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Process</option>
                                 <option value="Done">Done</option>
@@ -117,7 +117,7 @@ function ShowList({ taskList, setTaskList , setStatus, pending, inProgress, done
                         <div key={task.key} className='Task-List'>
                             <p>{task.currentTask}</p>
                             <p>{task.currentStatus}</p>
-                            <select onChange={(e) => setStatus(e.target.value)}>
+                            <select onChange={(e) => newStatus(task,e)}>
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Process</option>
                                 <option value="Done">Done</option>
@@ -134,7 +134,7 @@ function ShowList({ taskList, setTaskList , setStatus, pending, inProgress, done
                         <div key={task.key} className='Task-List'>
                             <p>{task.currentTask}</p>
                             <p>{task.currentStatus}</p>
-                            <select onChange={(e) => setStatus(e.target.value)}>
+                            <select onChange={(e) => newStatus(task,e)}>
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Process</option>
                                 <option value="Done">Done</option>
