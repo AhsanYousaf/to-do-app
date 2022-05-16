@@ -2,8 +2,11 @@ import './ShowList.css';
 import ShowList from './ShowList';
 
 
-function FilterList({ taskList, setTaskList , pending, inProgress, done}){
+function FilterList({ taskList, setTaskList , filter }){
 
+const pending = filter.pending;
+const inProgress = filter.inProgress;
+const done = filter.done;
     
 
    
