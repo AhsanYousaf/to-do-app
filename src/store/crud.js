@@ -1,10 +1,5 @@
 const initialState = {
 
-    filter: {
-        pending: true,
-        inProgress: true,
-        done: true,
-    },
     taskList: []
 
 };
@@ -29,30 +24,6 @@ const reducer = ( state = initialState, action ) => {
                     id: action.payload.obj.id,
                     status: action.payload.value,
                 }]),
-            };
-        case 'CHANGE_PENDING':
-            return {
-                ...state,
-                filter: {
-                    ...state.filter,
-                    pending: !state.filter.pending,
-                }, 
-            };
-        case 'CHANGE_IN_PROGRESS':
-            return {
-                ...state,
-                filter: {
-                    ...state.filter,
-                    inProgress: !state.filter.inProgress,
-                }, 
-            };
-        case 'CHANGE_DONE':
-            return {
-                ...state,
-                filter: {
-                    ...state.filter,
-                    done: !state.filter.done,
-                }, 
             };
         default:
             return state;    
