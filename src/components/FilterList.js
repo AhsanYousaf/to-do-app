@@ -1,13 +1,18 @@
 import './ShowList.css';
 import ShowList from './ShowList';
+import { useSelector } from "react-redux";
 
 
-function FilterList({ taskList, setTaskList , filter }){
+function FilterList({ filter }){
+
+const taskList = useSelector( state => state.taskList );
 
 const pending = filter.pending;
 const inProgress = filter.inProgress;
 const done = filter.done;
-    
+   
+
+
 
    
 
@@ -15,53 +20,22 @@ const done = filter.done;
            <div>
             {
                 taskList.map((task) => {
-                    if (pending === true && inProgress === true && done === true){
-                        if (task.currentStatus === "Pending" || "In Progress" || "Done"){
-                            return(<ShowList task={task} taskList={taskList} setTaskList={setTaskList}/>);
-                    }}
 
-                    else if (pending === true && inProgress === true && done === false){
-                        if (task.currentStatus !== "Done"){
-                            return(<ShowList task={task} taskList={taskList} setTaskList={setTaskList}/>);
-                    }}
+                    if (pending && task.status === "Pending"){
+                            return(<ShowList task={task}/>);
+                    }
 
-                    else if (pending === true && inProgress === false && done === true){
-                        if (task.currentStatus !== "In Progress"){
-                            return(<ShowList task={task} taskList={taskList} setTaskList={setTaskList}/>);
-                    }}
+                    if (inProgress && task.status === "In Progress"){
+                            return(<ShowList task={task}/>);
+                    }
 
-                    else if (pending === false && inProgress === true && done === true){
-                        if (task.currentStatus !== "Pending"){
-                            return(<ShowList task={task} taskList={taskList} setTaskList={setTaskList}/>);
-                    }}
-
-                    else if (pending === true && inProgress === false && done === false){
-                        if (task.currentStatus === "Pending"){
-                            return(<ShowList task={task} taskList={taskList} setTaskList={setTaskList}/>);
-                    }}
-
-                    else if (pending === false && inProgress === true && done === false){
-                        if (task.currentStatus === "In Progress"){
-                            return(<ShowList task={task} taskList={taskList} setTaskList={setTaskList}/>);
-                    }}
-
-                    else if (pending === false && inProgress === false && done === true){
-                        if (task.currentStatus === "Done"){
-                            return(<ShowList task={task} taskList={taskList} setTaskList={setTaskList}/>);
-                    }}
-
-                    else {
-                    return(
-                    <div>
-                        
-                    </div>
-                    )}
-
-                })
-            }
+                    if (done && task.status === "Done"){
+                            return(<ShowList task={task}/>);
+                    }
+            })
+        }
         </div>
-       );
-
+       );  
 }
 
 export default FilterList;

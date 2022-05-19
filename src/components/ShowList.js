@@ -1,39 +1,49 @@
 import './ShowList.css';
+import { useDispatch } from "react-redux";
 
 
-function ShowList({ task, taskList, setTaskList }){
+function ShowList({ task }){
 
-    const deleteTask = (key) => {
-       const newTaskList = taskList.filter((task)=>{
-        return task.taskId !== key;
-       });
-       setTaskList(newTaskList);
-   }
-   
-   const newStatus = (key, e) => {
+    const dispatch = useDispatch();
 
-    const newTaskList = taskList.filter((task)=>{
-        return task.taskId !== key.taskId;
-       });
-       setTaskList([...newTaskList, { currentTask: key.currentTask , currentStatus: e.target.value , taskId: key.taskId }]);
+    const deleteTask = (id) => {
+        dispatch({
+            type: 'DELETE_TASK',
+            payload: id,
+        });
+    }
 
-       }
+    const updateStatus = (key, e) => {
+        dispatch({
+            type: "DELETE_TASK",
+            payload: key.id,
+        });
+        dispatch({
+            type: 'UPDATE_STATUS',
+            payload: {
+                obj: key,
+                value: e.target.value
+            }
+        });
+    }
 
-return(
-                    <div>
-                        <div key={task.key} className='Task-List'>
-                            <p>{task.currentTask}</p>
-                            <p>{task.currentStatus}</p>
-                            <select onChange={(e) => newStatus(task,e)}>
+
+                    return(
+                        <div>
+                        <div key={task.id} className='Task-List'>
+                            <p>{task.title}</p>
+                            <p>{task.status}</p>
+                            <select onChange={(e) => updateStatus(task,e)}>
                                 <option value="Pending">Pending</option>
                                 <option value="In Progress">In Process</option>
                                 <option value="Done">Done</option>
                             </select>
-                            <button onClick={() => deleteTask(task.taskId)}>x</button>
+                            <button onClick={() => deleteTask(task.id)}>x</button>
                         </div>
                     </div>
-                    )
+                    );
 
+    
 }
 
     
