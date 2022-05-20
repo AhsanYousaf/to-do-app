@@ -1,6 +1,7 @@
 const initialState = {
 
-    taskList: []
+    taskList: [],
+    updatedList: [],
 
 };
 
@@ -11,11 +12,13 @@ const reducer = ( state = initialState, action ) => {
                 ...state,
                 taskList: ([...state.taskList, action.payload ]),
             };
+
         case 'DELETE_TASK':
             return {
                 ...state,
                 taskList: state.taskList.filter( (task) => task.id !== action.payload ),
             };
+
         case 'UPDATE_STATUS':
             return {
                 ...state,
@@ -25,6 +28,13 @@ const reducer = ( state = initialState, action ) => {
                     status: action.payload.value,
                 }]),
             };
+
+        case 'UPDATED_LIST':
+            return {
+                ...state,
+                updatedList: (action.payload),
+            };
+            
         default:
             return state;    
     }

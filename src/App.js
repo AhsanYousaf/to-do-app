@@ -4,10 +4,10 @@ import './App.css';
 import FilterList from "./components/FilterList";
 
 function App() {
+
     const dispatch = useDispatch();
     const [newTask,setNewTask] = useState(null);
     const [status,setStatus] = useState('Pending');
-
     const [filter,setFilter] = useState({
         pending: true,
         inProgress: true,
@@ -27,6 +27,7 @@ function App() {
     setNewTask('');
     }
     
+    
 
      return(
     <div className='App'>
@@ -34,11 +35,11 @@ function App() {
         <div className='Wrapper'>
           <h3>To do App</h3>
           <p>Filter Tasks</p>
-          <input type="checkbox" value={filter.pending} onChange={(e) => setFilter( {...filter,  pending: !filter.pending } )}  defaultChecked />
+          <input type="checkbox" value={filter.pending} onChange={(e) => setFilter({...filter, pending: !filter.pending })}  defaultChecked />
           <label for="pending">Pending</label>
-          <input type="checkbox" value={filter.inProgress} onChange={(e) => setFilter( {...filter,  inProgress: !filter.inProgress } )} defaultChecked />
+          <input type="checkbox" value={filter.inProgress} onChange={(e) => setFilter({...filter, inProgress: !filter.inProgress })} defaultChecked />
           <label for="inProgress">In Progress</label>
-          <input type="checkbox" value={filter.done} onChange={(e) => setFilter( {...filter,  done: !filter.done } )} defaultChecked />
+          <input type="checkbox" value={filter.done} onChange={(e) => setFilter({...filter, done: !filter.done })} defaultChecked />
           <label for="done">Done</label>
           <p>Add New Task</p>
         <div className='Input-wrapper'>

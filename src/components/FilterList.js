@@ -1,41 +1,54 @@
 import './ShowList.css';
 import ShowList from './ShowList';
-import { useSelector } from "react-redux";
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
+
 
 
 function FilterList({ filter }){
 
 const taskList = useSelector( state => state.taskList );
+const updatedList = useSelector( state => state.updatedList );
+let List;
+const [tasks, setTasks] = useState([]);
+const dispatch = useDispatch();
 
-const pending = filter.pending;
-const inProgress = filter.inProgress;
-const done = filter.done;
+useEffect(() => {
+    
+        List = ((taskList.filter((task) => {
+            if (task.status === "Pending" && filter.pending === true){
+                return task;
+            }
+            if (task.status === "In Progress" && filter.inProgress === true){
+                return task;
+            }
+            if (task.status === "Done" && filter.done === true){
+                return task;
+            }
+            
+        }))) 
+        
+        
+        setTasks(List);
+        dispatch({
+            type: 'UPDATED_LIST',
+            payload: tasks,
+        });         
+    }, [filter, taskList, tasks] );
+
+
    
 
-
-
-   
-
-       return(
-           <div>
-            {
-                taskList.map((task) => {
-
-                    if (pending && task.status === "Pending"){
-                            return(<ShowList task={task}/>);
-                    }
-
-                    if (inProgress && task.status === "In Progress"){
-                            return(<ShowList task={task}/>);
-                    }
-
-                    if (done && task.status === "Done"){
-                            return(<ShowList task={task}/>);
-                    }
+return(
+    <div>
+        {
+            updatedList.map((task) => {
+                return <ShowList task={task} />
             })
         }
-        </div>
-       );  
+    </div>
+    );
+
 }
 
 export default FilterList;
