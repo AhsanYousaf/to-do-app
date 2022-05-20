@@ -1,20 +1,18 @@
 import './ShowList.css';
 import ShowList from './ShowList';
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 
 
 function FilterList({ filter }){
 
 const taskList = useSelector( state => state.taskList );
-let List;
 const [tasks, setTasks] = useState([]);
-const dispatch = useDispatch();
 
 useEffect(() => {
     
-        List = ((taskList.filter((task) => {
+        setTasks((taskList.filter((task) => {
             if (task.status === "Pending" && filter.pending === true){
                 return task;
             }
@@ -26,10 +24,8 @@ useEffect(() => {
             }
             
         }))) 
-        
-        setTasks(List);   
 
-    }, [filter, taskList, tasks] );
+    }, [filter, taskList] );
 
 
    
