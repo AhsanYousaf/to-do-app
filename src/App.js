@@ -6,8 +6,11 @@ import FilterList from "./components/FilterList";
 function App() {
 
     const dispatch = useDispatch();
-    const [newTask,setNewTask] = useState(null);
-    const [status,setStatus] = useState('Pending');
+    const [newTask,setNewTask] = useState({
+        id: '',
+        title: '',
+        status: 'Pending'
+    });
     const [filter,setFilter] = useState({
         pending: true,
         inProgress: true,
@@ -15,16 +18,17 @@ function App() {
     })
 
 
-    const addTask = () => { 
+    const addTask = (e) => {
+        e.preventDefault(); 
         dispatch({
         type: 'ADD_TO_LIST',
         payload: {
-            title: newTask,
             id: Date.now(),
-            status: status
+            title: newTask.title,
+            status: newTask.status,
         }
     });
-    setNewTask('');
+    setNewTask({...newTask, title: '' })
     }
     
     
@@ -42,15 +46,17 @@ function App() {
           <input type="checkbox" value={filter.done} onChange={(e) => setFilter({...filter, done: !filter.done })} defaultChecked />
           <label for="done">Done</label>
           <p>Add New Task</p>
-        <div className='Input-wrapper'>
-          <input value={newTask} onChange={(e) => setNewTask(e.target.value)} placeholder="Add Task" />
-          <select onChange={(e) => setStatus(e.target.value)}>
-            <option value="Pending">Pending</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Done">Done</option>
-          </select>
-          <button onClick={addTask} disabled={!newTask} >+</button>
-        </div>
+        <form onSubmit={ (e) => addTask(e) }>
+            <div className='Input-wrapper'>
+                <input value={newTask.title} onChange={(e) => setNewTask({...newTask, title: e.target.value })} placeholder="Add Task" />
+                <select onChange={(e) => setNewTask({...newTask, status: e.target.value })}>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Done">Done</option>
+                </select>
+                <button disabled={!newTask} >+</button>
+            </div>
+        </form>
         <div>
             <FilterList filter={filter} />
         </div>
