@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from "react-redux";
 function FilterList({ filter }){
 
 const taskList = useSelector( state => state.taskList );
-const updatedList = useSelector( state => state.updatedList );
 let List;
 const [tasks, setTasks] = useState([]);
 const dispatch = useDispatch();
@@ -28,12 +27,8 @@ useEffect(() => {
             
         }))) 
         
-        
-        setTasks(List);
-        dispatch({
-            type: 'UPDATED_LIST',
-            payload: tasks,
-        });         
+        setTasks(List);   
+
     }, [filter, taskList, tasks] );
 
 
@@ -42,7 +37,7 @@ useEffect(() => {
 return(
     <div>
         {
-            updatedList.map((task) => {
+            tasks.map((task) => {
                 return <ShowList task={task} />
             })
         }

@@ -1,7 +1,6 @@
 const initialState = {
 
     taskList: [],
-    updatedList: [],
 
 };
 
@@ -29,12 +28,6 @@ const reducer = ( state = initialState, action ) => {
                 }]),
             };
 
-        case 'UPDATED_LIST':
-            return {
-                ...state,
-                updatedList: (action.payload),
-            };
-            
         default:
             return state;    
     }
